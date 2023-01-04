@@ -1,5 +1,7 @@
 import '../index.css';
 import Navbar from '../Components/Navbar';
+import { signup } from '../Components/Firebase';
+import { useRef } from 'react';
 
 const SignupPage = () => {
     return (
@@ -14,6 +16,24 @@ const SignupPage = () => {
 }
 
 const SignupHero = () => {
+    
+    const emailRef = useRef<HTMLInputElement>(null);
+    const passwordRef = useRef<HTMLInputElement>(null);
+    const passwordConfirmRef = useRef<HTMLInputElement>(null);
+
+    async function handleSignup() {
+        if(emailRef.current===null || passwordRef.current===null || passwordConfirmRef.current===null)
+            return;
+        if(passwordRef.current.value!==passwordConfirmRef.current.value)
+            return;
+        try{
+            await signup(emailRef.current.value, passwordRef.current.value);
+        } catch {
+            alert("ERROR");
+        }
+        
+    }
+
     return (
         <div className="hero h-2/3 w-1/2 bg-base-300 rounded-3xl">
             <div className="hero-content flex-col lg:flex-row-reverse">
@@ -27,28 +47,22 @@ const SignupHero = () => {
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
-                            <input type="text" placeholder="email" className="input input-bordered" />
-                        </div>
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">Username</span>
-                            </label>
-                            <input type="text" placeholder="email" className="input input-bordered" />
+                            <input ref={emailRef} type="text" placeholder="email" className="input input-bordered" />
                         </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input type="text" placeholder="password" className="input input-bordered" />
+                            <input ref={passwordRef} type="text" placeholder="password" className="input input-bordered" />
                         </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Confirm Password</span>
                             </label>
-                            <input type="text" placeholder="password" className="input input-bordered" />
+                            <input ref={passwordConfirmRef} type="text" placeholder="password" className="input input-bordered" />
                         </div>
                         <div className="form-control mt-6">
-                            <button className="btn btn-primary bg-green-500 hover:bg-green-600 border-green-600 hover:border-green-600">Sign Up</button>
+                            <button onClick={handleSignup} className="btn btn-primary bg-green-500 hover:bg-green-600 border-green-600 hover:border-green-600">Sign Up</button>
                         </div>
                     </div>
                 </div>
