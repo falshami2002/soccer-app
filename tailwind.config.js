@@ -5,9 +5,13 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        'soccer-pattern': "url('https://media.istockphoto.com/id/1149826251/vector/football-soccer-pattern-background.jpg?s=612x612&w=0&k=20&c=lU-Fi8sK2rAyvmcfUsQdTR-FnoNiovZuxM6ZSRwXh1U=')",
+        'soccer-pattern': "url('https://t3.ftcdn.net/jpg/01/13/49/82/360_F_113498271_Arb4VgIstIcPgxUOTQfhjZg9FK8a9HvA.jpg')",
+        'soccer-ball-pattern': "url('https://img.freepik.com/premium-photo/soccer-ball-hexagon-background-black-white-football-pattern-3d-rendering_601748-23010.jpg?w=2000')"
       }
     },
   },
-  plugins: [require('daisyui')],
+  plugins: [
+    require('daisyui'),
+    require('tailwind-scrollbar'),
+],
 }
