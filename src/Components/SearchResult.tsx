@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useCurrentUser, addTeam } from "./Firebase";
 
 interface SearchResultProps {
     name: (string | undefined)
@@ -7,6 +8,7 @@ interface SearchResultProps {
 
 export default function SearchResult({name}: SearchResultProps)  {
     const [res, setRes] = useState<Array<any>>();
+    const user = useCurrentUser();
 
     var myHeaders = new Headers();
     myHeaders.append("x-rapidapi-key", "7d22c3347c0dabd5c65e459f651118f6");
@@ -32,6 +34,7 @@ export default function SearchResult({name}: SearchResultProps)  {
         <div className="overflow-x-auto w-[60%] fixed top-[20%]">
             <table className="table w-full">
                 <thead>
+                    { res?.length! ?
                     <tr>
                         <th>Team Name</th>
                         <th>City</th>
@@ -39,6 +42,7 @@ export default function SearchResult({name}: SearchResultProps)  {
                         <th></th>
                         <th></th>
                     </tr>
+                : <div></div>}
                 </thead>
                 <tbody>
                     {res ?
@@ -66,10 +70,12 @@ export default function SearchResult({name}: SearchResultProps)  {
 
                             </th>
                             <th>
-                                <Link to="/team-page" state={{team: team}} className="btn btn-ghost btn-xs">details</Link>
+                                <Link to="/team-page" state={{team: team, id: team.team.id}} className="btn btn-ghost btn-xs">details</Link>
                             </th>
                             <th>
-                                <button className="btn btn-ghost btn-xs">details</button>
+                                { user ?
+                                    <button onClick={() => addTeam(team.team.id)} className="btn btn-ghost btn-xs">Add Team</button>
+                                :   <Link to='/login' className="btn btn-ghost btn-xs">Log In to Add Teams</Link>}
                             </th>
                         </tr>
                     ) : <div></div>}

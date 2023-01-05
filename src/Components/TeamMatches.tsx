@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 
-export default function TeamMatches(id: any) {
+type TeamMatchesProps = {
+    id: number
+}
+
+export default function TeamMatches({id}: TeamMatchesProps) {
     const [res, setRes] = useState<Array<any>>();
 
     var myHeaders = new Headers();
@@ -14,9 +18,11 @@ export default function TeamMatches(id: any) {
     };
 
     useEffect(() => {
-        fetch("https://v3.football.api-sports.io/fixtures?league=39", requestOptions as RequestInit)
+        if(id === undefined)
+            return;
+        fetch("https://v3.football.api-sports.io/fixtures?season=2022&team="+(id), requestOptions as RequestInit)
             .then(response => response.text())
-            .then(result => {console.log((JSON.parse(result))); setRes((JSON.parse(result)).slice(0, 4))})
+            .then(result => {console.log((JSON.parse(result))); setRes((JSON.parse(result)).response.slice(0, 5))})
             .catch(error => console.log(error));
     }, []);
 
@@ -26,6 +32,7 @@ export default function TeamMatches(id: any) {
         <div className="overflow-x-auto w-[60%]">
             <table className="table w-full">
                 <thead>
+                    { res?.length! > 0 ?
                     <tr>
                         <th>League</th>
                         <th>Home Team</th>
@@ -33,6 +40,7 @@ export default function TeamMatches(id: any) {
                         <th></th>
                         <th></th>
                     </tr>
+                    : <div></div>}
                 </thead>
                 <tbody>
                     { res ?

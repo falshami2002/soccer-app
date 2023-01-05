@@ -2,6 +2,7 @@ import { useState, useEffect, createContext, useContext } from "react";
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import { getFirestore, doc, setDoc, updateDoc, arrayUnion } from 'firebase/firestore';
 import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, User } from 'firebase/auth';
 
 // Your web app's Firebase configuration
@@ -17,22 +18,22 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
+const db = getFirestore();
 
 //Function to signup
 export function signup(email: string, password: string) {
+    setDoc(doc(db, 'Users', email), {
+        teams: []
+    });
     return createUserWithEmailAndPassword(auth, email, password);
 }
 
-//Custom Hook || Can be removed
-export function useAuth() {
-    const [currentUser, setCurrentUser ] = useState<User | null>();
-
-    useEffect(()=>{
-        const unsub = onAuthStateChanged(auth,user => {setCurrentUser(user)})
-        return unsub;
-    },[])
-
-    return currentUser;
+//Function to add a team
+export function addTeam(id: number) {
+    const docRef = doc(db, 'Users', auth.currentUser?.email!);
+    updateDoc(docRef, {
+        teams: arrayUnion(id)
+    })
 }
 
 //Function to logout
@@ -44,7 +45,6 @@ export function logout() {
 export function login(email: string, password: string) {
     return signInWithEmailAndPassword(auth, email, password);
 }
-
 
 //User context to allow every page to access user
 const UserContext = createContext(null as unknown as User);

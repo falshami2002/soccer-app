@@ -28,7 +28,7 @@ const Navbar: React.FC = () => {
                 </ul>
             </div>
             {
-                currentUser ? 
+                currentUser? 
             <div className="navbar-end">
                 <span className='mr-5'>Logged In as {currentUser?.email}</span>
                 <button onClick={handleLogout} className="btn mr-5 btn-outline bg-transparent">Log Out</button>
