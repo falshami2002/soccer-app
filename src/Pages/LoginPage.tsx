@@ -1,5 +1,7 @@
 import '../index.css';
 import Navbar from '../Components/Navbar';
+import { useState, useRef } from 'react';
+import { login } from '../Components/Firebase';
 
 const LoginPage = () => {
     return (
@@ -14,6 +16,24 @@ const LoginPage = () => {
 }
 
 const LoginHero = () => {
+
+    const emailRef = useRef<HTMLInputElement>(null);
+    const passwordRef = useRef<HTMLInputElement>(null);
+
+    const [loading, setLoading] = useState(false);
+
+    async function handleLogin() {
+        if(emailRef.current===null || passwordRef.current===null)
+            return;
+        setLoading(true);
+        try {
+            await login(emailRef.current.value, passwordRef.current.value);
+        } catch {
+
+        }
+        setLoading(false);
+    }
+
     return (
         <div className="hero h-1/2 w-1/2 bg-base-300 rounded-3xl">
             <div className="hero-content flex-col lg:flex-row-reverse">
@@ -27,19 +47,19 @@ const LoginHero = () => {
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
-                            <input type="text" placeholder="email" className="input input-bordered" />
+                            <input ref={emailRef} type="email" placeholder="email" className="input input-bordered" />
                         </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input type="text" placeholder="password" className="input input-bordered" />
+                            <input ref={passwordRef} type="password" placeholder="password" className="input input-bordered" />
                             <label className="label">
                                 <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                             </label>
                         </div>
                         <div className="form-control mt-6">
-                            <button className="btn btn-primary bg-green-500 hover:bg-green-600 border-green-600 hover:border-green-600">Login</button>
+                            <button disabled={loading} onClick={handleLogin} className="btn btn-primary bg-green-500 hover:bg-green-600 border-green-600 hover:border-green-600">Login</button>
                         </div>
                     </div>
                 </div>

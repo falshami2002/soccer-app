@@ -1,7 +1,7 @@
 import '../index.css';
 import Navbar from '../Components/Navbar';
-import { signup } from '../Components/Firebase';
-import { useRef } from 'react';
+import { signup, useCurrentUser } from '../Components/Firebase';
+import { useRef, useState } from 'react';
 
 const SignupPage = () => {
     return (
@@ -21,16 +21,22 @@ const SignupHero = () => {
     const passwordRef = useRef<HTMLInputElement>(null);
     const passwordConfirmRef = useRef<HTMLInputElement>(null);
 
+    const currentUser = useCurrentUser();
+
+    const [loading, setLoading] = useState(false);
+
     async function handleSignup() {
         if(emailRef.current===null || passwordRef.current===null || passwordConfirmRef.current===null)
             return;
         if(passwordRef.current.value!==passwordConfirmRef.current.value)
             return;
+        setLoading(true);
         try{
             await signup(emailRef.current.value, passwordRef.current.value);
         } catch {
             alert("ERROR");
         }
+        setLoading(false);
         
     }
 
@@ -47,22 +53,22 @@ const SignupHero = () => {
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
-                            <input ref={emailRef} type="text" placeholder="email" className="input input-bordered" />
+                            <input ref={emailRef} type="email" placeholder="email" className="input input-bordered" />
                         </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input ref={passwordRef} type="text" placeholder="password" className="input input-bordered" />
+                            <input ref={passwordRef} type="password" placeholder="password" className="input input-bordered" />
                         </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Confirm Password</span>
                             </label>
-                            <input ref={passwordConfirmRef} type="text" placeholder="password" className="input input-bordered" />
+                            <input ref={passwordConfirmRef} type="password" placeholder="password" className="input input-bordered" />
                         </div>
                         <div className="form-control mt-6">
-                            <button onClick={handleSignup} className="btn btn-primary bg-green-500 hover:bg-green-600 border-green-600 hover:border-green-600">Sign Up</button>
+                            <button disabled={loading || currentUser!==null} onClick={handleSignup} className="btn btn-primary bg-green-500 hover:bg-green-600 border-green-600 hover:border-green-600">Sign Up</button>
                         </div>
                     </div>
                 </div>
