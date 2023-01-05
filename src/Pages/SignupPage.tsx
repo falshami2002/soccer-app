@@ -3,7 +3,7 @@ import Navbar from '../Components/Navbar';
 import { signup, useCurrentUser } from '../Components/Firebase';
 import { useRef, useState } from 'react';
 
-const SignupPage = () => {
+const SignupPage: React.FC = () => {
     return (
         <div className='h-screen w-screen max-w-full max-h-full scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-transparent'>
             <Navbar />
@@ -15,7 +15,7 @@ const SignupPage = () => {
     );
 }
 
-const SignupHero = () => {
+const SignupHero: React.FC = () => {
     
     const emailRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);

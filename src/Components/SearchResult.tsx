@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-export default function SearchResult(props: any) {
+interface SearchResultProps {
+    name: (string | undefined)
+}
+
+export default function SearchResult({name}: SearchResultProps)  {
     const [res, setRes] = useState<Array<any>>();
 
     var myHeaders = new Headers();
@@ -15,12 +19,12 @@ export default function SearchResult(props: any) {
     };
 
     useEffect(() => {
-        console.log(props.name);
-        fetch("https://v3.football.api-sports.io/teams?search="+encodeURIComponent(props.name), requestOptions as RequestInit)
+        console.log(name);
+        fetch("https://v3.football.api-sports.io/teams?search="+encodeURIComponent(name!), requestOptions as RequestInit)
             .then(response => response.text())
             .then(result => { console.log((JSON.parse(result)).response.slice(0,10)); setRes((JSON.parse(result)).response.slice(0,8)) })
             .catch(error => console.log(error));
-    }, [props.name]);
+    }, [name]);
 
 
 

@@ -5,7 +5,7 @@ import { GiSoccerBall } from 'react-icons/gi';
 import { DiReact } from 'react-icons/di';
 import { SiTailwindcss, SiFirebase } from 'react-icons/si';
 
-const AboutPage = () => {
+const AboutPage: React.FC = () => {
     return (
         <div className='h-screen w-screen max-w-full scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-transparent'>
             <Navbar />
@@ -29,7 +29,7 @@ const AboutPage = () => {
     );
 }
 
-const Title = () => {
+const Title: React.FC = () => {
     return (
 
         <div className='text-5xl flex mt-10'>
@@ -39,13 +39,13 @@ const Title = () => {
     );
 }
 
-type CardProps = {
+interface CardProps {
     title: string;
     icon?: JSX.Element;
     paragraph: string;
 }
 
-const Card = ({title, icon, paragraph}: CardProps) => {
+const Card: React.FC<CardProps> = ({title, icon, paragraph}) => {
     return (
         <div className="card w-1/4 h-full bg-base-100 shadow-xl">
             <div className="card-body">

@@ -4,7 +4,7 @@ import Footer from '../Components/Footer';
 import { Link } from 'react-router-dom';
 import { GiSoccerBall } from 'react-icons/gi';
 
-const HomePage = () => {
+const HomePage: React.FC = () => {
     return (
         <div className='h-screen w-screen max-w-full max-h-full scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-transparent'>
             <Navbar/>

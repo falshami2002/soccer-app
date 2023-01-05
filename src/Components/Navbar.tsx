@@ -3,7 +3,7 @@ import { GiSoccerBall } from 'react-icons/gi';
 import { Link } from 'react-router-dom';
 import { useCurrentUser, logout } from './Firebase';
 
-const Navbar = () => {
+const Navbar: React.FC = () => {
     
     const currentUser = useCurrentUser();
 

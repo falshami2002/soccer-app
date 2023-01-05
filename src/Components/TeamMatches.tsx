@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function TeamMatches(props: any) {
+export default function TeamMatches(id: any) {
     const [res, setRes] = useState<Array<any>>();
 
     var myHeaders = new Headers();

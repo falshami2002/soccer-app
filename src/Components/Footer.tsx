@@ -1,7 +1,7 @@
 import '../index.css';
 import { GiSoccerBall } from 'react-icons/gi';
 
-const Footer = () => {
+const Footer: React.FC = () => {
     return (
         <footer className="footer p-10 bg-neutral text-neutral-content">
             <div>
