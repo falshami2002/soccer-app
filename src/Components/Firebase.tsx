@@ -2,7 +2,7 @@ import { useState, useEffect, createContext, useContext } from "react";
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore, doc, setDoc, updateDoc, arrayUnion } from 'firebase/firestore';
+import { getFirestore, doc, setDoc, updateDoc, arrayUnion, getDoc } from 'firebase/firestore';
 import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, User } from 'firebase/auth';
 
 // Your web app's Firebase configuration
@@ -34,6 +34,13 @@ export function addTeam(id: number) {
     updateDoc(docRef, {
         teams: arrayUnion(id)
     })
+}
+
+//Function to grab user teams
+export async function getTeams() {
+    const docRef = doc(db, 'Users', auth.currentUser?.email!);
+    const docSnap = await getDoc(docRef);
+    return docSnap.data()!.teams;
 }
 
 //Function to logout

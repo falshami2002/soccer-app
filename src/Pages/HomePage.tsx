@@ -3,8 +3,11 @@ import Navbar from '../Components/Navbar';
 import Footer from '../Components/Footer';
 import { Link } from 'react-router-dom';
 import { GiSoccerBall } from 'react-icons/gi';
+import { useCurrentUser } from '../Components/Firebase';
 
 const HomePage: React.FC = () => {
+    const user = useCurrentUser();
+
     return (
         <div className='h-screen w-screen max-w-full max-h-full scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-transparent'>
             <Navbar/>
@@ -16,9 +19,13 @@ const HomePage: React.FC = () => {
                         <Link to='/about' className='btn bg-green-500 w-1/3'>
                             About Us
                         </Link>
-                        <Link to='/signup' className='btn w-1/3 ml-5'>
+                        { user ?
+                            <div></div>
+                            :
+                            <Link to='/signup' className='btn w-1/3 ml-5'>
                             Register
-                        </Link>
+                            </Link>
+                        }
                     </div>
                 </div>
             </div>

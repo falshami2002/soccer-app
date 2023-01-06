@@ -21,11 +21,13 @@ export default function SearchResult({name}: SearchResultProps)  {
     };
 
     useEffect(() => {
-        console.log(name);
-        fetch("https://v3.football.api-sports.io/teams?search="+encodeURIComponent(name!), requestOptions as RequestInit)
+        if(name || name!.length !== 0)
+        {
+            fetch("https://v3.football.api-sports.io/teams?search="+encodeURIComponent(name!), requestOptions as RequestInit)
             .then(response => response.text())
             .then(result => { console.log((JSON.parse(result)).response.slice(0,10)); setRes((JSON.parse(result)).response.slice(0,8)) })
             .catch(error => console.log(error));
+        }
     }, [name]);
 
 
@@ -42,7 +44,7 @@ export default function SearchResult({name}: SearchResultProps)  {
                         <th></th>
                         <th></th>
                     </tr>
-                : <div></div>}
+                : <tr></tr>}
                 </thead>
                 <tbody>
                     {res ?
@@ -78,7 +80,7 @@ export default function SearchResult({name}: SearchResultProps)  {
                                 :   <Link to='/login' className="btn btn-ghost btn-xs">Log In to Add Teams</Link>}
                             </th>
                         </tr>
-                    ) : <div></div>}
+                    ) : <tr></tr>}
                 </tbody>
             </table>
         </div>

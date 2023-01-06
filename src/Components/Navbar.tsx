@@ -25,6 +25,13 @@ const Navbar: React.FC = () => {
                     <li><Link to='/'>Home</Link></li>
                     <li><Link to='/about'>About Us</Link></li>
                     <li><Link to='/search'>Search Teams</Link></li>
+                    {currentUser ?
+                    <>
+                        <li><Link to ='/user-teams'>Your Teams</Link></li>
+                        <li><Link to ='/user-schedule'>Your Schedule</Link></li>
+                    </>
+                    :
+                    <div></div>}
                 </ul>
             </div>
             {

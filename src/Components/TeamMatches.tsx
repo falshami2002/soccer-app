@@ -40,7 +40,7 @@ export default function TeamMatches({id}: TeamMatchesProps) {
                         <th></th>
                         <th></th>
                     </tr>
-                    : <div></div>}
+                    : <tr></tr>}
                 </thead>
                 <tbody>
                     { res ?
@@ -75,7 +75,7 @@ export default function TeamMatches({id}: TeamMatchesProps) {
                                 <button className="btn btn-ghost btn-xs">details</button>
                             </th>
                         </tr>
-                    ) : <div></div>}
+                    ) : <tr></tr>}
                 </tbody>
             </table>
         </div>

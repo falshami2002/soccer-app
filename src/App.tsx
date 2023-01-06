@@ -7,6 +7,7 @@ import SignupPage from './Pages/SignupPage';
 import { UserProvider } from './Components/Firebase';
 import SearchPage from './Pages/SearchPage';
 import TeamPage from './Pages/TeamPage';
+import UserTeamsPage from './Pages/UserTeamsPage';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path='/signup' element={<SignupPage />} />
         <Route path='/search' element={<SearchPage/>} />
         <Route path='/team-page' element={<TeamPage/>} />
+        <Route path='/user-teams' element={<UserTeamsPage/>} />
       </Routes>
     </UserProvider>
   );
