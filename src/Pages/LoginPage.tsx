@@ -1,7 +1,8 @@
 import '../index.css';
 import Navbar from '../Components/Navbar';
 import { useState, useRef } from 'react';
-import { login } from '../Components/Firebase';
+import { login } from '../Utils/Firebase';
+import { Link } from 'react-router-dom';
 
 const LoginPage: React.FC = () => {
     return (
@@ -55,7 +56,7 @@ const LoginHero: React.FC = () => {
                             </label>
                             <input ref={passwordRef} type="password" placeholder="password" className="input input-bordered" />
                             <label className="label">
-                                <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
+                                <Link to='/reset' className="label-text-alt link link-hover">Forgot password?</Link>
                             </label>
                         </div>
                         <div className="form-control mt-6">

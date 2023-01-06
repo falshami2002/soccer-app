@@ -1,6 +1,6 @@
 import '../index.css';
 import Navbar from '../Components/Navbar';
-import { signup, useCurrentUser } from '../Components/Firebase';
+import { signup, useCurrentUser } from '../Utils/Firebase';
 import { useRef, useState } from 'react';
 
 const SignupPage: React.FC = () => {

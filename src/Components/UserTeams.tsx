@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getTeams, useCurrentUser } from "./Firebase";
+import { getTeams, useCurrentUser } from "../Utils/Firebase";
 import { Link } from "react-router-dom";
 
 export default function UserTeams() {
@@ -17,22 +17,24 @@ export default function UserTeams() {
     };
 
     useEffect(() => {
-        setRes([]);
         async function teams() {
             const teams = await getTeams();
             if (!teams)
                 return;
+            console.log(teams.length)
             teams.forEach((element: number) => {
+                console.log("loop");
                 getTeamInfo(element);
             });
         }
         function getTeamInfo(id: number) {
             fetch("https://v3.football.api-sports.io/teams?id=" + (id), requestOptions as RequestInit)
                 .then(response => response.text())
-                .then(result => setRes((prevRes) => prevRes.concat((JSON.parse(result)).response)))
+                .then(result => {setRes((prevRes) => prevRes.concat((JSON.parse(result)).response))})
                 .catch(error => console.log(error));
         }
         teams();
+        console.log(res);
     }, []);
 
 

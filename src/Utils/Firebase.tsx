@@ -3,7 +3,7 @@ import { useState, useEffect, createContext, useContext } from "react";
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getFirestore, doc, setDoc, updateDoc, arrayUnion, getDoc } from 'firebase/firestore';
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, User } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signOut, User } from 'firebase/auth';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -51,6 +51,11 @@ export function logout() {
 //Function to login
 export function login(email: string, password: string) {
     return signInWithEmailAndPassword(auth, email, password);
+}
+
+//Rest Password function
+export function resetPassword(email: string) {
+    return sendPasswordResetEmail(auth, email);
 }
 
 //User context to allow every page to access user

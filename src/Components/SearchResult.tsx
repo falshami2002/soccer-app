@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useCurrentUser, addTeam } from "./Firebase";
+import { useCurrentUser, addTeam } from "../Utils/Firebase";
 
 interface SearchResultProps {
     name: (string | undefined)

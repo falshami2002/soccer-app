@@ -1,7 +1,7 @@
 import '../index.css';
 import { GiSoccerBall } from 'react-icons/gi';
 import { Link } from 'react-router-dom';
-import { useCurrentUser, logout } from './Firebase';
+import { useCurrentUser, logout } from '../Utils/Firebase';
 
 const Navbar: React.FC = () => {
     

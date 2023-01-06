@@ -3,7 +3,7 @@ import Navbar from '../Components/Navbar';
 import Footer from '../Components/Footer';
 import { Link } from 'react-router-dom';
 import { GiSoccerBall } from 'react-icons/gi';
-import { useCurrentUser } from '../Components/Firebase';
+import { useCurrentUser } from '../Utils/Firebase';
 
 const HomePage: React.FC = () => {
     const user = useCurrentUser();
