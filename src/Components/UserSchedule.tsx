@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
+import { getTeams, useCurrentUser } from "../Utils/Firebase";
+import { Link } from "react-router-dom";
 
-type TeamMatchesProps = {
-    id: number
-}
-
-export default function TeamMatches({id}: TeamMatchesProps) {
-    const [res, setRes] = useState<Array<any>>();
+export default function UserSchedule() {
+    const [res, setRes] = useState<Array<any>>([]);
+    const user = useCurrentUser();
 
     var myHeaders = new Headers();
     myHeaders.append("x-rapidapi-key", "7d22c3347c0dabd5c65e459f651118f6");
@@ -18,19 +17,33 @@ export default function TeamMatches({id}: TeamMatchesProps) {
     };
 
     useEffect(() => {
-        if(id === undefined)
-            return;
-        fetch("https://v3.football.api-sports.io/fixtures?season=2022&team="+(id), requestOptions as RequestInit)
-            .then(response => response.text())
-            .then(result => {console.log((JSON.parse(result))); setRes((JSON.parse(result)).response.slice(0, 5))})
-            .catch(error => console.log(error));
+        async function teams() {
+            const teams = await getTeams();
+            if (!teams)
+                return;
+            console.log(teams.length)
+            teams.forEach((element: number) => {
+                console.log("loop");
+                getTeamInfo(element);
+            });
+        }
+        function getTeamInfo(id: number) {
+            fetch("https://v3.football.api-sports.io/fixtures?season=2022&next=5&team=" + (id), requestOptions as RequestInit)
+                .then(response => response.text())
+                .then(result => {console.log((JSON.parse(result)).response); setRes((prevRes) => prevRes.concat((JSON.parse(result)).response))})
+                .catch(error => console.log(error));
+        }
+        teams();
+        console.log(res);
+        setRes(res.sort((a,b)=>(a.fixture.date > b.fixture.date) ? 1 : -1))
+        console.log(res);
     }, []);
 
 
 
     return (
-        <div className="overflow-x-auto w-[60%]">
-            <table className="table w-full">
+        <div className="w-4/5 h-4/5 overflow-scroll mt-10">
+            <table className="table w-full h-full max-h-full overflow-scroll">
                 <thead>
                     { res?.length! > 0 ?
                     <tr>

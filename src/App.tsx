@@ -11,6 +11,7 @@ import UserTeamsPage from './Pages/UserTeamsPage';
 import PrivateRoutes from './Utils/PrivateRoutes';
 import ForgotPasswordPage from './Pages/ForgotPasswordPage';
 import NoLoginRoutes from './Utils/NoLoginRoutes';
+import UserSchedulePage from './Pages/UserSchedulePage';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route element={<PrivateRoutes />}>
           <Route path='/team-page' element={<TeamPage />} />
           <Route path='/user-teams' element={<UserTeamsPage />} />
+          <Route path='/user-schedule' element={<UserSchedulePage/>} />
         </Route>
         <Route element={<NoLoginRoutes />} >
           <Route path='/login' element={<LoginPage />} />
