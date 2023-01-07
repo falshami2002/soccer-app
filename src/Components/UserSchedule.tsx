@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
 import { getTeams, useCurrentUser } from "../Utils/Firebase";
-import { Link } from "react-router-dom";
 
 export default function UserSchedule() {
     const [res, setRes] = useState<Array<any>>([]);
-    const user = useCurrentUser();
 
     var myHeaders = new Headers();
     myHeaders.append("x-rapidapi-key", "7d22c3347c0dabd5c65e459f651118f6");

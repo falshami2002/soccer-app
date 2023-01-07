@@ -19,8 +19,8 @@ function App() {
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='/about' element={<AboutPage />} />
+        <Route path='/team-page' element={<TeamPage />} />
         <Route element={<PrivateRoutes />}>
-          <Route path='/team-page' element={<TeamPage />} />
           <Route path='/user-teams' element={<UserTeamsPage />} />
           <Route path='/user-schedule' element={<UserSchedulePage/>} />
         </Route>
