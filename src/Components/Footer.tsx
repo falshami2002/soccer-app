@@ -6,7 +6,7 @@ const Footer: React.FC = () => {
         <footer className="footer p-10 bg-neutral text-neutral-content">
             <div>
                 <GiSoccerBall className='text-6xl mb-2'/>
-                <p>Soccer Alert<br />Providing reliable tech since 1992</p>
+                <p>Soccer Alert<br />Your place to keep up with soccer</p>
             </div>
             <div>
                 <span className="footer-title">Social</span>
