@@ -32,8 +32,8 @@ const AboutPage: React.FC = () => {
 const Title: React.FC = () => {
     return (
 
-        <div className='text-5xl flex mt-10'>
-            <GiSoccerBall className='mr-5' />
+        <div className='text-[5vh] flex mt-[2%]'>
+            <GiSoccerBall className='mr-5 mt-[1vh]' />
             <h1>About Us</h1>
         </div>
     );
@@ -48,7 +48,7 @@ interface CardProps {
 const Card: React.FC<CardProps> = ({title, icon, paragraph}) => {
     return (
         <div className="card w-1/4 h-full bg-base-100 shadow-xl">
-            <div className="card-body">
+            <div className="card-body p-[10%]">
                 <h2 className="card-title text-[1.5vw]">{title}{icon}</h2>
                 <p className='text-[1vw] mt-[5%]'>{paragraph}</p>
             </div>

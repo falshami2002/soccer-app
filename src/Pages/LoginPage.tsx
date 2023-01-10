@@ -37,13 +37,13 @@ const LoginHero: React.FC = () => {
 
     return (
         <div className="hero h-1/2 w-1/2 bg-base-300 rounded-3xl">
-            <div className="hero-content flex-col lg:flex-row-reverse">
+            <div className="hero-content max-h-full flex-col lg:flex-row-reverse">
                 <div className="text-center lg:text-left">
                     <h1 className="text-5xl font-bold">Login</h1>
                     <p className="py-6">Select your favorite teams and check their next matches and previous results at any time</p>
                 </div>
-                <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-                    <div className="card-body">
+                <div className="card h-[80%] flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                    <div className="card-body h-full">
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Email</span>

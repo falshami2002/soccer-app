@@ -33,7 +33,7 @@ export default function SearchResult({name}: SearchResultProps)  {
 
 
     return (
-        <div className="overflow-x-auto w-[60%] fixed top-[20%]">
+        <div className="overflow-x-auto h-[80%] w-[60%] fixed top-[20%]">
             <table className="table w-full">
                 <thead>
                     { res?.length! ?
