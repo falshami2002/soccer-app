@@ -3,7 +3,7 @@ import Navbar from '../Components/Navbar';
 import Footer from '../Components/Footer';
 import { GiSoccerBall } from 'react-icons/gi';
 import { DiReact } from 'react-icons/di';
-import { SiTailwindcss, SiFirebase } from 'react-icons/si';
+import { SiTailwindcss, SiFirebase, SiTypescript } from 'react-icons/si';
 
 const AboutPage: React.FC = () => {
     return (
@@ -20,7 +20,7 @@ const AboutPage: React.FC = () => {
                     <div className='w-[100%] h-[35%] flex justify-around mt-[4%]'>
                         <Card title='DaisyUI' paragraph='I used DaisyUI alongside TailwindCSS to style the project and create some components.'/>
                         <Card title='Firebase' icon={<SiFirebase className='text-[2vw]'/>} paragraph='I used firebase to handle the backend portion of the project.'/>
-                        <Card title='Firebase' icon={<SiFirebase className='text-[2vw]'/>} paragraph='I used firebase to handle the backend portion of the project.'/>
+                        <Card title='Typescript' icon={<SiTypescript className='text-[2vw]'/>} paragraph='I used typescript to code this project for its type checking and potentional to catch errors before deployment.'/>
                     </div>
                 </div>
             </div>
